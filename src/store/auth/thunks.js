@@ -1,6 +1,12 @@
 import { loginWithEmailPassword, logoutFirebase, registerWithEmailPassword, singInWithGoogle } from "../../firebase/provider"
 import { checkingCredentials, login, logout } from "./";
 
+export const checkingAuthentication = (email, password) => {
+    return async (dispatch) => {
+        dispatch(checkingCredentials());
+    }
+}
+
 
 //para iniciar sesion con google
 export const startWitGoogleSingIn = () => {

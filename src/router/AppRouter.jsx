@@ -2,7 +2,6 @@ import { Route, Routes, BrowserRouter, Navigate } from "react-router"
 import { LayoutAuth } from "../auth/layout/LayoutAuth"
 import { RegisterPage, LoginPage } from "../auth/pages"
 import { ControlPage } from "../gastos/pages"
-import { useSelector } from "react-redux"
 import { useCheckAuth } from "../hooks/useCheckAuth"
 
 
@@ -14,9 +13,10 @@ export const AppRouter = () => {
         return <div>Checking...</div>
     }
 
+
     return (
         <BrowserRouter>
-            {status !== 'authenticated' ? <Routes>
+            {status === "not-authenticated" ? <Routes>
                 <Route path="auth" element={<LayoutAuth />}>
                     <Route path="login" element={<LoginPage />} />
                     <Route path="register" element={<RegisterPage />} />
