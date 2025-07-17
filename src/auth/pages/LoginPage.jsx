@@ -23,7 +23,6 @@ export const LoginPage = () => {
     }
 
     const onGoogleSingIn = () => {
-        console.log('withGoogle');
         dispatch(startWitGoogleSingIn())
     }
 

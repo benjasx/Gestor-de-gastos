@@ -10,6 +10,10 @@ export const AppRouter = () => {
 
     const { status } = useCheckAuth()
 
+    if (status === 'checking') {
+        return <div>Checking...</div>
+    }
+
     return (
         <BrowserRouter>
             {status !== 'authenticated' ? <Routes>

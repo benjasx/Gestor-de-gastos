@@ -16,9 +16,7 @@ export const useCheckAuth = () => {
             dispatch(login({ uid, displayName, email, photoURL }))
             /* dispatch(starLoadingGastos()) */
         })
-    })
+    },[])
 
-    return {
-        status
-    }
+    return status
 }
