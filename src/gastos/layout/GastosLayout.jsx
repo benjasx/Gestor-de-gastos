@@ -1,5 +1,6 @@
 import { Outlet } from "react-router"
-import { NavBar } from "../components/navBar"
+import { NavBar } from "../components"
+
 
 export const GastosLayout = () => {
     return (
