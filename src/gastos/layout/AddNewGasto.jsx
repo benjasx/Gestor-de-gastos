@@ -3,7 +3,7 @@ import { NavLink } from "react-router"
 
 export const AddNewGasto = () => {
   return (
-    <div className=" inset-0 flex items-center justify-center">
+    <div className=" inset-0 flex items-center justify-center animate__animated animate__fadeIn animate__faster">
       <form className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
         <div className="mb-4">
           <label
