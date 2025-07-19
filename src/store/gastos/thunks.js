@@ -1,11 +1,11 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
-import { addNewGasto, isSavingNewCosto, limpiarMessage } from "./gastosSlice";
+import { addNewGasto, isSavingNewCosto, limpiarMessage, setGastos } from "./gastosSlice";
 import { FirebaseDB } from "../../firebase/config";
+import { loadGastos } from "../../helpers/loadNotes";
 
 
 export const startNewGasto = (data, navigate) => {
     return async (dispatch, getState) => {
-
 
         dispatch(isSavingNewCosto())
         //console.log(getState().auth)
@@ -27,3 +27,11 @@ export const startNewGasto = (data, navigate) => {
     }
 }
 
+export const startLoadingGastos = () => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth;
+        if (!uid) throw new Error('El UID del usuario no existe')
+        const gastos = await loadGastos(uid)
+        dispatch(setGastos(gastos))
+    }
+}

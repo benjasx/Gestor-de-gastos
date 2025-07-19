@@ -24,8 +24,11 @@ export const gastosSlice = createSlice({
       state.isSaving = false
       state.messageSaved = 'Gasto guardado correctamente'
     },
+    setGastos: (state, action) => {
+      state.gastos = action.payload
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addNewGasto,desactivarGasto,isSavingNewCosto,limpiarMessage} = gastosSlice.actions
+export const { addNewGasto,desactivarGasto,isSavingNewCosto,limpiarMessage,setGastos} = gastosSlice.actions

@@ -1,17 +1,20 @@
 import { CircleDollarSign, Clapperboard, CreditCard, Plus, ShoppingCart } from "lucide-react";
 import { TransactionItem } from "../components";
 import { NavLink } from "react-router";
+import { useSelector } from "react-redux";
 
-const transactions = [
+/* const transactions = [
     { id: 1, icon: Clapperboard, category: 'Netflix', amount: -270.00, date: '14 julio 2025', paymentIcon: CreditCard, paymentIconColor: 'text-blue-500' },
     { id: 2, icon: ShoppingCart, category: 'Despensa', amount: -1800.00, date: '14 julio 2025', paymentIcon: CircleDollarSign, paymentIconColor: 'text-green-500' },
     { id: 3, icon: Clapperboard, category: 'Netflix', amount: -270.00, date: '14 julio 2025', paymentIcon: CircleDollarSign, paymentIconColor: 'text-green-500' },
     { id: 4, icon: Clapperboard, category: 'Netflix', amount: -270.00, date: '14 julio 2025', paymentIcon: CreditCard, paymentIconColor: 'text-blue-500' },
     { id: 5, icon: Clapperboard, category: 'Netflix', amount: -270.00, date: '14 julio 2025', paymentIcon: CreditCard, paymentIconColor: 'text-blue-500' },
     { id: 6, icon: Clapperboard, category: 'Netflix', amount: -270.00, date: '14 julio 2025', paymentIcon: CreditCard, paymentIconColor: 'text-blue-500' },
-];
+]; */
 
 export const MainLayout = () => {
+    const {gastos: transactions} = useSelector(state => state.gastos);
+    console.log(transactions);
     return (
         <>
             < main className="flex-grow flex flex-col" >
