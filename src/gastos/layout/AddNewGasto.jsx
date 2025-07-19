@@ -1,10 +1,43 @@
 import { ArrowLeftCircle } from "lucide-react"
-import { NavLink } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import { NavLink, replace, useNavigate } from "react-router"
+import { startNewGasto } from "../../store/gastos"
+import { useForm } from "../../hooks"
+import 'sweetalert2/dist/sweetalert2.min.css' 
+import { useEffect } from "react"
+import Swal from "sweetalert2"
+
+const formdata = {
+  category: "",
+  amount: "",
+  description: "",
+  paymentMethod: "",
+  date: "",
+}
 
 export const AddNewGasto = () => {
+  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const {messageSaved, isSaving} = useSelector(state => state.gastos)
+  const {
+    category,amount,description,paymentMethod,date,onInputChange,formState,
+
+  } = useForm(formdata)
+  const onClicNewNote = (e) => {
+    e.preventDefault()
+    dispatch(startNewGasto(formState,navigate))
+  }
+
+  useEffect(() => {
+    if(messageSaved.length > 0){
+      Swal.fire('Registro Guardado', messageSaved, 'success')
+    }
+  })
+
   return (
     <div className=" inset-0 flex items-center justify-center">
-      <form className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
+      <form onSubmit={onClicNewNote} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
         <div className="mb-4">
           <label
             htmlFor="category"
@@ -15,6 +48,8 @@ export const AddNewGasto = () => {
           <select
             id="category"
             name="category"
+            onChange={onInputChange}
+            value={category}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select a category</option>
@@ -35,6 +70,8 @@ export const AddNewGasto = () => {
             id="amount"
             name="amount"
             placeholder="$$$"
+            onChange={onInputChange}
+            value={amount}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
@@ -50,6 +87,8 @@ export const AddNewGasto = () => {
             id="description"
             name="description"
             placeholder="Enter Description"
+            onChange={onInputChange}
+            value={description}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows="3"
           />
@@ -65,6 +104,8 @@ export const AddNewGasto = () => {
           <select
             id="paymentMethod"
             name="paymentMethod"
+            onChange={onInputChange}
+            value={paymentMethod}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select payment method</option>
@@ -84,12 +125,15 @@ export const AddNewGasto = () => {
             type="date"
             id="date"
             name="date"
+            onChange={onInputChange}
+            value={date}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         <button
           type="submit"
+          disabled={isSaving}
           className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
         >
           Add Expense
