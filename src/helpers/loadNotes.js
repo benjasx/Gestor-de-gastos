@@ -18,8 +18,6 @@ export const loadGastos = async (uid = '') => {
             createdAt: data.createdAt ? data.createdAt.toMillis() : null // Si createdAt existe, lo convierte. Si no, lo deja en null.
         });
     });
-
-    console.log(gastos)
     return gastos
 }
 

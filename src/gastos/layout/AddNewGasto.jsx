@@ -24,7 +24,7 @@ const formValidations = {
     (value) => !isNaN(value) && parseFloat(value) > 0, 'El monto debe ser un número mayor a 0',
     (value) => value.length >= 1, 'El monto es requerido',
   ],
-  description: [(value) => value.length >= 10, 'La descripción debe tener al menos 10 caracteres'],
+  description: [(value) => value.length >= 5, 'La descripción debe tener al menos 10 caracteres'],
   paymentMethod: [(value) => value.length >= 1, 'El método de pago es requerido'],
   date: [(value) => value.length >= 1, 'La fecha es requerida'],
 }
@@ -44,10 +44,6 @@ export const AddNewGasto = () => {
     isFormValid, typeValid, categoryValid, amountValid, descriptionValid, paymentMethodValid, dateValid
   } = useForm(formdata, formValidations)
   
-  
-  console.log(amount);
-
-
   const onClicNewNote = (e) => {
     e.preventDefault()
     setFormSubmitted(true)
@@ -107,7 +103,7 @@ export const AddNewGasto = () => {
             id="amount"
             name="amount"
             min={1}
-            placeholder="$$$"
+            placeholder="$500.20"
             onChange={onInputChange}
             value={amount}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
