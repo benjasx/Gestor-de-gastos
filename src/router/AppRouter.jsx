@@ -3,6 +3,7 @@ import { LayoutAuth } from "../auth/layout/LayoutAuth"
 import { RegisterPage, LoginPage } from "../auth/pages"
 import { useCheckAuth } from "../hooks/useCheckAuth"
 import { GastosLayout, MainLayout, AddNewGasto} from "../gastos/layout"
+import { Spinner } from "../utils/Spinner"
 
 
 export const AppRouter = () => {
@@ -10,7 +11,7 @@ export const AppRouter = () => {
     const { status } = useCheckAuth()
 
     if (status === 'checking') {
-        return <div>Checking...</div>
+        return <Spinner/>
     }
 
     return (
