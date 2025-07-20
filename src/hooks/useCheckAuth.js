@@ -10,6 +10,7 @@ import { startLoadingGastos } from "../store/gastos"
 
 export const useCheckAuth = () => {
     const { status } = useSelector(state => state.auth)
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -21,6 +22,7 @@ export const useCheckAuth = () => {
         })
     }, [])
 
+    
     return {
         status
     }

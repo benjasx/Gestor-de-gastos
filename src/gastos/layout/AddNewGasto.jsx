@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { NavLink, replace, useNavigate } from "react-router"
 import { startNewGasto } from "../../store/gastos"
 import { useForm } from "../../hooks"
-import 'sweetalert2/dist/sweetalert2.min.css' 
+import 'sweetalert2/dist/sweetalert2.min.css'
 import { useEffect } from "react"
 import Swal from "sweetalert2"
+import { TransactionOptions } from "../components/TransactionOptions"
 
 const formdata = {
+  type: "",
   category: "",
   amount: "",
   description: "",
@@ -16,21 +18,21 @@ const formdata = {
 }
 
 export const AddNewGasto = () => {
-  
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {messageSaved, isSaving} = useSelector(state => state.gastos)
+  const { messageSaved, isSaving } = useSelector(state => state.gastos)
   const {
-    category,amount,description,paymentMethod,date,onInputChange,formState,
-
+    category, type, amount, description, paymentMethod, date, onInputChange, formState,
   } = useForm(formdata)
+
   const onClicNewNote = (e) => {
     e.preventDefault()
-    dispatch(startNewGasto(formState,navigate))
+    dispatch(startNewGasto(formState, navigate))
   }
 
   useEffect(() => {
-    if(messageSaved.length > 0){
+    if (messageSaved.length > 0) {
       Swal.fire('Registro Guardado', messageSaved, 'success')
     }
   })
@@ -40,22 +42,32 @@ export const AddNewGasto = () => {
       <form onSubmit={onClicNewNote} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
         <div className="mb-4">
           <label
+            htmlFor="type"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Tipo:
+          </label>
+          <select
+            id="type"
+            name="type"
+            onChange={onInputChange}
+            value={type}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Seleciona tipo de Movimiento</option>
+            <option value="ingreso">Ingreso</option>
+            <option value="gasto">Gasto</option>
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label
             htmlFor="category"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Category:
+            Categoria:
           </label>
-          <select
-            id="category"
-            name="category"
-            onChange={onInputChange}
-            value={category}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="">Select a category</option>
-            <option value="Netflix">Netflix</option>
-            <option value="Despensa">Despensa</option>
-          </select>
+          <TransactionOptions category={category} onInputChange={onInputChange}/>
         </div>
 
         <div className="mb-4">
@@ -63,7 +75,7 @@ export const AddNewGasto = () => {
             htmlFor="amount"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Amount:
+            Monto:
           </label>
           <input
             type="number"
@@ -81,7 +93,7 @@ export const AddNewGasto = () => {
             htmlFor="description"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Description:
+            Descripción:
           </label>
           <textarea
             id="description"
@@ -99,7 +111,7 @@ export const AddNewGasto = () => {
             htmlFor="paymentMethod"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Payment Method:
+            Metodo de pago:
           </label>
           <select
             id="paymentMethod"
@@ -108,9 +120,10 @@ export const AddNewGasto = () => {
             value={paymentMethod}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="">Select payment method</option>
-            <option value="creditCard">Credit Card</option>
-            <option value="cash">Cash</option>
+            <option value="">Selecciona el metodo de pago</option>
+            <option value="efectivo">Efectivo</option>
+            <option value="tarjeta">Targeta</option>
+            <option value="transferencia">Transferencia</option>
           </select>
         </div>
 
@@ -119,7 +132,7 @@ export const AddNewGasto = () => {
             htmlFor="date"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Date:
+            Fecha:
           </label>
           <input
             type="date"
@@ -136,7 +149,7 @@ export const AddNewGasto = () => {
           disabled={isSaving}
           className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
         >
-          Add Expense
+          Agregar Registro
         </button>
       </form>
       <div className="absolute bottom-2 right-2 z-20">
