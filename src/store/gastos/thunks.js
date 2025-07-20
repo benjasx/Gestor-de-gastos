@@ -1,7 +1,9 @@
 import { collection, doc, setDoc, Timestamp } from "firebase/firestore/lite";
-import { addNewGasto, isSavingNewCosto, limpiarMessage, setGastos, setSaveMessage } from "./gastosSlice";
+import { addNewGasto, isSavingNewCosto, limpiarMessage, setGastos, setSaldoDisponible, setSaveMessage, setViewGastos, setViewIngresos } from "./gastosSlice";
 import { FirebaseDB } from "../../firebase/config";
 import { loadGastos } from "../../helpers/loadNotes";
+import { loadIngresos } from "../../helpers/loadIngresos";
+import { loadMGastos } from "../../helpers/loadGastos";
 
 
 export const startNewGasto = (data, navigate) => {
@@ -18,6 +20,15 @@ export const startNewGasto = (data, navigate) => {
 
             const updatedGastos = await loadGastos(uid);
             dispatch(setGastos(updatedGastos));
+
+            if (newGastoData.type === 'ingreso') {
+                dispatch(obtenerIngresos()); // Llama al thunk para actualizar el total de ingresos
+                dispatch(obtenerSaldoDisponible())
+            }
+            if (newGastoData.type === 'gasto') {
+                dispatch(obtenerGastos()); // Llama al thunk para actualizar el total de ingresos
+                dispatch(obtenerSaldoDisponible())
+            }
 
             // *** ¡Aquí se despacha el mensaje de éxito! ***
             dispatch(setSaveMessage('Movimiento guardado exitosamente.'));
@@ -37,7 +48,7 @@ export const startNewGasto = (data, navigate) => {
             // Opcional: limpiar el mensaje de error después de un tiempo
             setTimeout(() => {
                 dispatch(limpiarMessage());
-            }, 3000); // Muestra el error por 3 segundos
+            }, 1000); // Muestra el error por 3 segundos
         }
     }
 }
@@ -50,3 +61,33 @@ export const startLoadingGastos = () => {
         dispatch(setGastos(gastos))
     }
 }
+
+export const obtenerIngresos = () => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth;
+        if (!uid) throw new Error('El UID del usuario no existe')
+        const ingresos = await loadIngresos(uid)
+        dispatch(setViewIngresos(ingresos))
+    }
+}
+
+export const obtenerGastos = () => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth;
+        if (!uid) throw new Error('El UID del usuario no existe')
+        const gastos = await loadMGastos(uid)
+        dispatch(setViewGastos(gastos))
+    }
+}
+
+export const obtenerSaldoDisponible = () => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth;
+        const ingresos = await loadIngresos(uid)
+        const gastos = await loadMGastos(uid)
+        dispatch(setSaldoDisponible(ingresos - gastos))
+    }
+}
+
+
+

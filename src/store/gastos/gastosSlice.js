@@ -4,6 +4,9 @@ const initialState = {
   messageSaved: '',
   gastos: [],
   active: null,
+  mainIngresos: 0,
+  gastosTotales: 0,
+  saladoDisponible: 0,
 }
 
 export const gastosSlice = createSlice({
@@ -29,13 +32,31 @@ export const gastosSlice = createSlice({
       state.isSaving = false;
       state.gastos = action.payload;
     },
-    setSaveMessage: (state, action) => { 
+    setSaveMessage: (state, action) => {
       state.messageSaved = action.payload;
-      state.isSaving = false; 
+      state.isSaving = false;
+    },
+    setViewIngresos: (state, action) => {
+      state.mainIngresos = action.payload;
+    },
+    setViewGastos: (state, action) => {
+      state.gastosTotales = action.payload;
+    },
+    setSaldoDisponible: (state, action) => {
+      state.saladoDisponible = action.payload;
     },
 
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addNewGasto, desactivarGasto, isSavingNewCosto, limpiarMessage, setGastos, setSaveMessage} = gastosSlice.actions
+export const { addNewGasto, 
+  desactivarGasto, 
+  isSavingNewCosto, 
+  limpiarMessage, 
+  setGastos, 
+  setSaveMessage, 
+  setViewIngresos, 
+  setViewGastos,
+  setSaldoDisponible
+} = gastosSlice.actions

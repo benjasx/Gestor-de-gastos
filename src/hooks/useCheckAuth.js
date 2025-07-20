@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth"
 
 import { FirebaseAuth } from "../firebase/config"
 import { login, logout } from "../store/auth"
-import { startLoadingGastos } from "../store/gastos"
+import { obtenerGastos, obtenerIngresos, obtenerSaldoDisponible, startLoadingGastos } from "../store/gastos"
 
 
 
@@ -19,6 +19,9 @@ export const useCheckAuth = () => {
             const { uid, displayName, email, photoURL } = user
             dispatch(login({ uid, displayName, email, photoURL }))
             dispatch(startLoadingGastos())
+            dispatch(obtenerIngresos())
+            dispatch(obtenerGastos())
+            dispatch(obtenerSaldoDisponible())
         })
     }, [])
 

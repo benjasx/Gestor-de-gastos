@@ -55,7 +55,7 @@ export const AddNewGasto = () => {
     if (messageSaved.length > 0) {
       Swal.fire('Registro Guardado', messageSaved, 'success')
     }
-  })
+  },[messageSaved, dispatch])
 
   return (
     <>
