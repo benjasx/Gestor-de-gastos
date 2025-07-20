@@ -10,6 +10,7 @@ export const MainLayout = () => {
     const lastSixTransactions = Array.isArray(gastos)
         ? gastos.slice(0, 6)
         : [];
+console.log(lastSixTransactions);
 
     return (
         <>
@@ -40,9 +41,8 @@ export const MainLayout = () => {
                             {lastSixTransactions.map(tx => <TransactionItem key={tx.id} transaction={tx} />)}
                         </div>
                         <div className="text-center mt-6">
-                            {lastSixTransactions.length <= 6
-                                ? null
-                                : <button className="bg-slate-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-slate-700 transition-colors">
+                            {gastos.length > 6 && 
+                                <button className="bg-slate-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-slate-700 transition-colors">
                                     Ver mas
                                 </button>
                             }
