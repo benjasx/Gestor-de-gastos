@@ -15,15 +15,15 @@ export const MainLayout = () => {
                 {/* Sección superior con los círculos de balance */}
                 < div className="flex items-start flex-shrink-0" >
                     <div className="relative bg-white/95 shadow-2xl rounded-full w-48 h-48 sm:w-56 sm:h-56 flex flex-col justify-center items-center text-center mt-10 ml-10 sm:ml-0">
-                        <span className="text-blue-600 text-3xl sm:text-4xl font-bold leading-tight">${saladoDisponible}</span>
-                        <span className="text-blue-500 text-base sm:text-lg mt-1">Disponibles</span>
+                        <span className="text-blue-600 text-3xl sm:text-4xl font-bold leading-tight text-shadow">${saladoDisponible}</span>
+                        <span className="text-blue-500 text-base sm:text-lg mt-1 text-shadow">Disponibles</span>
                     </div>
                     <div className="flex flex-col space-y-5 ml-auto pl-2">
-                        <div className="bg-green-500 shadow-lg rounded-full w-32 h-32 sm:w-36 sm:h-36 flex flex-col justify-center items-center text-center text-white">
-                            <span className="text-base sm:text-lg">Ingresos</span>
-                            <span className="text-lg sm:text-xl font-bold mt-1">${mainIngresos}</span>
+                        <div className="bg-gradient-to-br from-blue-300 to-blue-500 shadow-lg rounded-full w-32 h-32 sm:w-36 sm:h-36 flex flex-col justify-center items-center text-center text-white">
+                            <span className="text-base sm:text-lg text-shadow">Ingresos</span>
+                            <span className="text-lg sm:text-xl font-bold mt-1 text-shadow">${mainIngresos}</span>
                         </div>
-                        <div className="bg-red-500 shadow-lg rounded-full w-32 h-32 sm:w-36 sm:h-36 flex flex-col justify-center items-center text-center text-white">
+                        <div className="bg-gradient-to-br from-red-400 to-red-500 shadow-lg rounded-full w-32 h-32 sm:w-36 sm:h-36 flex flex-col justify-center items-center text-center text-white">
                             <span className="text-base sm:text-lg">Gastos</span>
                             <span className="text-lg sm:text-xl font-bold mt-1">${gastosTotales}</span>
                         </div>
@@ -32,7 +32,7 @@ export const MainLayout = () => {
 
                 {/* Nueva sección de Últimos Movimientos */}
                 < div className="mt-12 flex-grow" >
-                    <h2 className="text-xl text-center font-bold text-blue-950 mb-4 sm:text-white">{lastSixTransactions.length === 0 ? 'No hay Movimientos' : 'Últimos movimientos'}</h2>
+                    <h2 className="text-xl text-center font-bold text-blue-950 mb-4 sm:text-white">{lastSixTransactions.length === 0 ? 'Registra un Movimiento 😀' : 'Últimos movimientos'}</h2>
                     <div className="space-y-3">
                         {lastSixTransactions.map(tx => <TransactionItem key={tx.id} transaction={tx} />)}
                     </div>

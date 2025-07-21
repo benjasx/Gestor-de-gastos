@@ -37,7 +37,7 @@ export const AddNewGasto = () => {
   const navigate = useNavigate()
 
   const [formSubmitted, setFormSubmitted] = useState(false)
-  const { messageSaved, isSaving } = useSelector(state => state.gastos)
+  const { messageSaved, isSaving, mainIngresos } = useSelector(state => state.gastos)
 
   const {
     category, type, amount, description, paymentMethod, date, onInputChange, formState,
@@ -61,10 +61,11 @@ export const AddNewGasto = () => {
     <>
       <div className=" inset-0 flex items-center justify-center animate__animated animate__fadeInLeft animate__faster">
         <form onSubmit={onClicNewNote} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
+        {mainIngresos <= 0? <><p className="text-xl text-center text-amber-500 font-medium mt-1 mb-2">Registra un ingreso para comenzar</p><hr/></> : <p className="text-xl text-center text-blue-500 font-medium mt-1 mb-2">Registra un movimiento</p>}
           <div className="mb-4">
             <label
               htmlFor="type"
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-sm font-bold mb-2 mt-5"
             >
               Tipo:
             </label>
@@ -77,7 +78,7 @@ export const AddNewGasto = () => {
             >
               <option value="">Seleciona tipo de Movimiento</option>
               <option value="ingreso">Ingreso</option>
-              <option value="gasto">Gasto</option>
+              {mainIngresos > 0? <option value="gasto">Gasto</option> : null}
             </select>
             {(typeValid && formSubmitted) ? <p className="pl-2 text-red-500 text-sm font-medium mt-1">! {typeValid}</p> : null}
           </div>
@@ -88,7 +89,7 @@ export const AddNewGasto = () => {
             >
               Categoria:
             </label>
-            <TransactionOptions category={category} onInputChange={onInputChange} />
+            <TransactionOptions category={category} onInputChange={onInputChange} type={type}/>
             {(categoryValid && formSubmitted) ? <p className="pl-2 text-red-500 text-sm font-medium mt-1">! {categoryValid}</p> : null}
           </div>
 

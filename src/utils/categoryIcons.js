@@ -1,4 +1,4 @@
-import { Clapperboard, ShoppingCart, Car, Stethoscope, Home, Lightbulb, Shirt, Dog, Book, Wallet, Laptop, TrendingUp, Building, Gift, TabletSmartphone, Wifi, Banknote, CreditCard, WalletCards } from "lucide-react";
+import { Clapperboard, ShoppingCart, Car, Stethoscope, Home, Lightbulb, Shirt, Dog, Book, Wallet, Laptop, TrendingUp, Building, Gift, TabletSmartphone, Wifi, Banknote, CreditCard, WalletCards, Bomb } from "lucide-react";
 
 
 export const categoryIcons = {
@@ -6,9 +6,13 @@ export const categoryIcons = {
     'comida': ShoppingCart,
     'entretenimiento': Clapperboard,
     'transporte': Car,
+    'osio': Bomb,
     'salud': Stethoscope,
     'hogar': Home,
     'servicios': Lightbulb,
+    'renta': Lightbulb,
+    'agua': Lightbulb,
+    'luz': Lightbulb,
     'ropa': Shirt,
     'mascotas': Dog,
     'educacion': Book,
@@ -16,6 +20,8 @@ export const categoryIcons = {
     'regalos': Gift,
     'internet': Wifi,
 
+    // Income
+    'fondo inicial': Wallet,
     'salario': Wallet,
     'freelance': Laptop,
     'inversiones': TrendingUp,
@@ -33,22 +39,26 @@ export const paymentMethods = {
 
 // Array of expense categories
 export const expenseCategories = [
-    { id: 'comida', icon: ShoppingCart },
-    { id: 'entretenimiento', icon: Clapperboard },
-    { id: 'transporte', icon: Car },
-    { id: 'salud', icon: Stethoscope },
-    { id: 'hogar', icon: Home },
-    { id: 'servicios', icon: Lightbulb },
-    { id: 'ropa', icon: Shirt },
-    { id: 'mascotas', icon: Dog },
-    { id: 'educacion', icon: Book },
-    { id: 'viajes', icon: Wallet },
-    { id: 'regalos', icon: Gift },
-    { id: 'internet', icon: Wifi },
-    { id: 'salario', icon: Wallet },
-    { id: 'freelance', icon: Laptop },
-    { id: 'inversiones', icon: TrendingUp },
-    { id: 'alquiler', icon: Building },
-    { id: 'bonos', icon: Gift },
-    { id: 'reparaciones', icon: TabletSmartphone }
+    { id: 'comida', icon: ShoppingCart, type: 'gasto' },
+    { id: 'entretenimiento', icon: Clapperboard, type: 'gasto' },
+    { id: 'transporte', icon: Car, type: 'gasto' },
+    { id: 'osio', icon: Bomb, type: 'gasto' },
+    { id: 'salud', icon: Stethoscope, type: 'gasto' },
+    { id: 'hogar', icon: Home, type: 'gasto' },
+    { id: 'renta', icon: Lightbulb, type: 'gasto' },
+    { id: 'agua', icon: Lightbulb, type: 'gasto' },
+    { id: 'luz', icon: Lightbulb, type: 'gasto' },
+    { id: 'ropa', icon: Shirt, type: 'gasto' },
+    { id: 'internet', icon: Wifi, type: 'gasto' },
+    { id: 'mascotas', icon: Dog, type: 'gasto' },
+    { id: 'educacion', icon: Book, type: 'gasto' },
+    { id: 'viajes', icon: Wallet, type: 'gasto' },
+    { id: 'regalos', icon: Gift, type: 'gasto' },
+    { id: 'fondo inicial', icon: Wallet, type: 'ingreso' },
+    { id: 'salario', icon: Wallet, type: 'ingreso' },
+    { id: 'freelance', icon: Laptop, type: 'ingreso' },
+    { id: 'inversiones', icon: TrendingUp, type: 'ingreso' },
+    { id: 'alquiler', icon: Building, type: 'ingreso' },
+    { id: 'bonos', icon: Gift, type: 'ingreso' },
+    { id: 'reparaciones', icon: TabletSmartphone, type: 'ingreso' }
 ];

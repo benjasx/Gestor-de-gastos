@@ -1,8 +1,9 @@
+import { Type } from "lucide-react";
 import { categoryIcons, paymentMethods } from "../../utils";
 
 // Componente para un solo item de la lista de transacciones
 export const TransactionItem = ({ transaction }) => {
-    const { amount, category, date, description, id, paymentMethod } = transaction;
+    const { amount, category,type, date, paymentMethod, description } = transaction;
     const IconComponent = categoryIcons[category] || categoryIcons['Otros'];
     const IconPaymetethod = paymentMethods[paymentMethod]
     return (
@@ -12,7 +13,8 @@ export const TransactionItem = ({ transaction }) => {
             </div>
             <div className="flex-grow">
                 <p className="font-semibold text-gray-800">{category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}</p>
-                <p className="text-red-500 font-medium">${Number(amount).toFixed(2)}</p>
+                <p className={`${type === 'ingreso' ? 'text-blue-500 font-bold' : 'text-red-500 font-bold'}`}>${Number(amount).toFixed(2)}</p>
+                {/* <span>{description}</span> */}
             </div>
             <div className="text-right flex flex-col items-end">
                 <p className="text-sm text-gray-500">{date}</p>
