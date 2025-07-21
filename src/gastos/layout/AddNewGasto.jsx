@@ -1,6 +1,6 @@
 import { ArrowLeftCircle } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
-import { NavLink, replace, useNavigate } from "react-router"
+import { NavLink, useNavigate } from "react-router"
 import { startNewGasto } from "../../store/gastos"
 import { useForm } from "../../hooks"
 import 'sweetalert2/dist/sweetalert2.min.css'
@@ -37,8 +37,9 @@ export const AddNewGasto = () => {
   const navigate = useNavigate()
 
   const [formSubmitted, setFormSubmitted] = useState(false)
-  const { messageSaved, isSaving, mainIngresos } = useSelector(state => state.gastos)
-
+  const { messageSaved, isSaving, mainIngresos, saladoDisponible } = useSelector(state => state.gastos)
+  
+  
   const {
     category, type, amount, description, paymentMethod, date, onInputChange, formState,
     isFormValid, typeValid, categoryValid, amountValid, descriptionValid, paymentMethodValid, dateValid
@@ -57,11 +58,14 @@ export const AddNewGasto = () => {
     }
   },[messageSaved, dispatch])
 
+  
+
   return (
     <>
       <div className=" inset-0 flex items-center justify-center animate__animated animate__fadeInLeft animate__faster">
         <form onSubmit={onClicNewNote} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
-        {mainIngresos <= 0? <><p className="text-xl text-center text-amber-500 font-medium mt-1 mb-2">Registra un ingreso para comenzar</p><hr/></> : <p className="text-xl text-center text-blue-500 font-medium mt-1 mb-2">Registra un movimiento</p>}
+        {saladoDisponible <= 0? <><p className="text-xl text-center text-amber-500 font-medium mt-1 mb-2">Registra un ingreso para obtener saldo disponible</p><hr/></> : <p className="text-xl text-center text-blue-500 font-medium mt-1 mb-2">Registra un movimiento</p>}
+
           <div className="mb-4">
             <label
               htmlFor="type"
@@ -78,7 +82,7 @@ export const AddNewGasto = () => {
             >
               <option value="">Seleciona tipo de Movimiento</option>
               <option value="ingreso">Ingreso</option>
-              {mainIngresos > 0? <option value="gasto">Gasto</option> : null}
+              {saladoDisponible > 0 ? <option value="gasto">Gasto</option> : null}
             </select>
             {(typeValid && formSubmitted) ? <p className="pl-2 text-red-500 text-sm font-medium mt-1">! {typeValid}</p> : null}
           </div>
@@ -105,6 +109,7 @@ export const AddNewGasto = () => {
               id="amount"
               name="amount"
               min={1}
+              step="0.01"
               placeholder="$500.20"
               onChange={onInputChange}
               value={amount}
@@ -175,7 +180,7 @@ export const AddNewGasto = () => {
           <button
             type="submit"
             disabled={isSaving}
-            className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
+            className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors cursor-pointer"
           >
             Agregar Registro
           </button>

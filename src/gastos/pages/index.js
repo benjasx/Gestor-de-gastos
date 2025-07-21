@@ -1,1 +1,1 @@
-export * from './ControlPage'
+export * from './TransactionDetailPage'

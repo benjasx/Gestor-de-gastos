@@ -45,18 +45,23 @@ export const gastosSlice = createSlice({
     setSaldoDisponible: (state, action) => {
       state.saladoDisponible = action.payload;
     },
-
+    deleteMovimiento: (state, action) => {
+      state.gastos = state.gastos.filter(gasto => gasto.id !== action.payload);
+      state.isSaving = false;
+      state.messageSaved = 'Transacción eliminada correctamente';
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
 export const { addNewGasto, 
+  deleteMovimiento,
   desactivarGasto, 
   isSavingNewCosto, 
   limpiarMessage, 
   setGastos, 
+  setSaldoDisponible,
   setSaveMessage, 
-  setViewIngresos, 
   setViewGastos,
-  setSaldoDisponible
+  setViewIngresos, 
 } = gastosSlice.actions
