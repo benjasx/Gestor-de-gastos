@@ -123,7 +123,7 @@ export const AddNewGasto = () => {
             <textarea
               id="description"
               name="description"
-              placeholder="Enter Description"
+              placeholder="Ingresa la descripción del movimiento"
               onChange={onInputChange}
               value={description}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
