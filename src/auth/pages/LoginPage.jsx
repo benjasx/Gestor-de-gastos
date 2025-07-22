@@ -3,6 +3,7 @@ import { Link } from "react-router"
 import { starLoginWithEmailAndPassword, startWitGoogleSingIn } from "../../store/auth"
 import { useForm } from "../../hooks"
 import { useMemo } from "react"
+import { AtSign } from "lucide-react"
 
 const formData = {
     email: '',
@@ -94,14 +95,14 @@ export const LoginPage = () => {
                 >
                     Ingresar
                 </button>
-                <hr className="mt-2 divide-black" />
+                <hr className="mt-3 divide-black" />
                 <button
                     type="button"
                     disabled={isAutenticated}
                     onClick={onGoogleSingIn}
                     className="cursor-pointer mt-2 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                    Google
+                    <AtSign/>Ingresar con GOOGLE
                 </button>
             </div>
         </form>

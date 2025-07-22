@@ -38,8 +38,8 @@ export const AddNewGasto = () => {
 
   const [formSubmitted, setFormSubmitted] = useState(false)
   const { messageSaved, isSaving, mainIngresos, saladoDisponible } = useSelector(state => state.gastos)
-  
-  
+
+
   const {
     category, type, amount, description, paymentMethod, date, onInputChange, formState,
     isFormValid, typeValid, categoryValid, amountValid, descriptionValid, paymentMethodValid, dateValid
@@ -56,15 +56,23 @@ export const AddNewGasto = () => {
     if (messageSaved.length > 0) {
       Swal.fire('Registro Guardado', messageSaved, 'success')
     }
-  },[messageSaved, dispatch])
+  }, [messageSaved, dispatch])
 
-  
+
 
   return (
     <>
-      <div className=" inset-0 flex items-center justify-center animate__animated animate__fadeInLeft animate__faster">
+      <div className="absolute top-20 left-8 z-20">
+        <NavLink
+          to="/"
+          className="bg-red-500 text-white size-14 rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors"
+        >
+          <ArrowLeftCircle size={32} />
+        </NavLink>
+      </div>
+      <div className="mt-5 inset-0 flex items-center justify-center animate__animated animate__fadeInLeft animate__faster">
         <form onSubmit={onClicNewNote} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4">
-        {saladoDisponible <= 0? <><p className="text-xl text-center text-amber-500 font-medium mt-1 mb-2">Registra un ingreso para obtener saldo disponible</p><hr/></> : <p className="text-xl text-center text-blue-500 font-medium mt-1 mb-2">Registra un movimiento</p>}
+          {saladoDisponible <= 0 ? <><p className="text-xl text-center text-amber-500 font-medium mt-1 mb-2">Registra un ingreso para obtener saldo disponible</p><hr /></> : <p className="text-xl text-center text-blue-500 font-medium mt-1 mb-2">Registra un movimiento</p>}
 
           <div className="mb-4">
             <label
@@ -93,7 +101,7 @@ export const AddNewGasto = () => {
             >
               Categoria:
             </label>
-            <TransactionOptions category={category} onInputChange={onInputChange} type={type}/>
+            <TransactionOptions category={category} onInputChange={onInputChange} type={type} />
             {(categoryValid && formSubmitted) ? <p className="pl-2 text-red-500 text-sm font-medium mt-1">! {categoryValid}</p> : null}
           </div>
 
@@ -187,14 +195,7 @@ export const AddNewGasto = () => {
         </form>
 
       </div>
-      <div className="absolute bottom-3 z-20">
-        <NavLink
-          to="/"
-          className="bg-red-500 text-white size-14 rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors"
-        >
-          <ArrowLeftCircle size={32} />
-        </NavLink>
-      </div>
+
     </>
 
   )

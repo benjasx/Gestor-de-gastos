@@ -1,18 +1,25 @@
 import { Plus, } from "lucide-react";
 import { TransactionItem } from "../components";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { formatMoney } from "../../helpers/formatMoney";
 
 export const MainLayout = () => {
-    const { gastos,mainIngresos,gastosTotales, saladoDisponible} = useSelector(state => state.gastos);
+    const { gastos, mainIngresos, gastosTotales, saladoDisponible } = useSelector(state => state.gastos);
     const lastSixTransactions = Array.isArray(gastos)
         ? gastos.slice(0, 6)
         : [];
 
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+
+        navigate(`/control-gastos/allTransactions`);
+    };
     return (
         <>
-            < main className="flex-grow flex flex-col" >
+            < main className="flex-grow flex flex-col animate__animated animate__fadeInRight animate__faster" >
+
                 {/* Sección superior con los círculos de balance */}
                 < div className="flex items-start flex-shrink-0" >
                     <div className="relative bg-white/95 shadow-2xl rounded-full size-46 mt-15 sm:w-56 sm:h-56 flex flex-col justify-center items-center text-center sm:ml-0">
@@ -39,7 +46,7 @@ export const MainLayout = () => {
                     </div>
                     <div className="text-center mt-6">
                         {gastos.length > 6 &&
-                            <button className="bg-slate-800 text-white px-6 py-2 rounded-full font-semibold hover:bg-slate-700 transition-colors">
+                            <button onClick={handleClick} className="bg-slate-800 cursor-pointer text-white px-6 py-2 rounded-full font-semibold hover:bg-slate-700 transition-colors">
                                 Ver mas
                             </button>
                         }

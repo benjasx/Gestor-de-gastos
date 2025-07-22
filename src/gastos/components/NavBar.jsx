@@ -13,11 +13,11 @@ export const NavBar = () => {
     return (
 
         < header className="flex justify-between items-center mb-16 text-white flex-shrink-0" >
-            <button className="p-2 rounded-lg transition-colors hover:bg-slate-800">
+            <button className="p-2 rounded-lg transition-colors hover:bg-slate-800 hidden">
                 <Menu size={28} />
             </button>
             <h1 className="text-xl font-semibold">{displayName}</h1>
-            <button onClick={onLogout} className="p-2 rounded-lg transition-colors hover:bg-slate-800">
+            <button onClick={onLogout} className="p-2 rounded-lg transition-colors hover:bg-red-800 cursor-pointer">
                 <LogOut size={28} />
             </button>
         </header >

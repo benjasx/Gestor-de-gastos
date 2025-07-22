@@ -4,7 +4,7 @@ import { RegisterPage, LoginPage } from "../auth/pages"
 import { useCheckAuth } from "../hooks/useCheckAuth"
 import { GastosLayout, MainLayout, AddNewGasto} from "../gastos/layout"
 import { Spinner } from "../utils/Spinner"
-import { TransactionDetailPage } from "../gastos/pages/TransactionDetailPage"
+import { TransactionDetailPage, AllTransactionsPage} from "../gastos/pages"
 
 
 export const AppRouter = () => {
@@ -27,6 +27,7 @@ export const AppRouter = () => {
                 <Route path="control-gastos" element={<GastosLayout />}>
                     <Route index element={<MainLayout/>} />
                     <Route path="addNewGasto" element={<AddNewGasto/>} />
+                    <Route path="allTransactions" element={<AllTransactionsPage />} />
                     <Route path="transaction/:transactionId" element={<TransactionDetailPage />} />
                 </Route>
                 <Route path="*" element={<Navigate to={'/control-gastos'} replace />} />
