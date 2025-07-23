@@ -15,7 +15,7 @@ export const generateTransactionsPdf = (transactions, totalIngresos, totalGastos
     const docDefinition = {
  pageMargins:[40,200,40,60], 
 header:{
-   hola mumdo
+   text: 'Tu texto de cabecera',
 },
         content: [
 
