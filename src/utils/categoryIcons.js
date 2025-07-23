@@ -19,6 +19,7 @@ export const categoryIcons = {
     'viajes': Wallet,
     'regalos': Gift,
     'internet': Wifi,
+    'pagos': Banknote,
 
     // Income
     'fondo inicial': Wallet,
@@ -54,6 +55,7 @@ export const expenseCategories = [
     { id: 'educacion', icon: Book, type: 'gasto' },
     { id: 'viajes', icon: Wallet, type: 'gasto' },
     { id: 'regalos', icon: Gift, type: 'gasto' },
+    { id: 'pagos', icon: Banknote, type: 'gasto' },
     { id: 'fondo inicial', icon: Wallet, type: 'ingreso' },
     { id: 'salario', icon: Wallet, type: 'ingreso' },
     { id: 'freelance', icon: Laptop, type: 'ingreso' },
