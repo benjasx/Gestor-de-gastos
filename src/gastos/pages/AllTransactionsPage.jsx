@@ -4,6 +4,7 @@ import { ArrowLeftCircle } from "lucide-react"
 import { NavLink } from "react-router"
 import { useForm } from "../../hooks"
 import { useMemo } from "react"
+import { MyReport } from "../../utils/MyReport"
 
 
 const formdata = {
@@ -43,6 +44,7 @@ export const AllTransactionsPage = () => {
         <>
             <div>
                 <p className="font-bold text-right text-white text-xl">Todos los movimientos</p>
+                <MyReport/>
                 <div className="flex justify-end gap-2 items-center mt-5">
 
                     <select

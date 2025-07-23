@@ -161,7 +161,7 @@ export const AddNewGasto = () => {
             >
               <option value="">Selecciona el metodo de pago</option>
               <option value="efectivo">Efectivo</option>
-              <option value="tarjeta">Targeta</option>
+              <option value="tarjeta">Tarjeta</option>
               <option value="transferencia">Transferencia</option>
             </select>
             {(paymentMethodValid && formSubmitted) ? <p className="pl-2 text-red-500 text-sm font-medium mt-1">! {paymentMethodValid}</p> : null}
