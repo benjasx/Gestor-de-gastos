@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { TransactionItem } from "../components"
 import { ArrowLeftCircle } from "lucide-react"
 import { NavLink } from "react-router"
@@ -44,7 +44,7 @@ export const AllTransactionsPage = () => {
         <>
             <div>
                 <p className="font-bold text-right text-white text-xl">Todos los movimientos</p>
-                <MyReport/>
+                <MyReport txByDate={filteredTransactions} mes={mes} año={año}/>
                 <div className="flex justify-end gap-2 items-center mt-5">
 
                     <select

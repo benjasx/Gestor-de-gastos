@@ -1,7 +1,8 @@
-import pdfMake from './pdfFonts'; // Importa pdfMake ya configurado con las fuentes
+import { imageReportHeader } from '../helpers/imageReport';
+import { footerSecction } from './footer.section';
 
 
-export const generateTransactionsPdf = (transactions, totalIngresos, totalGastos, saldoDisponible) => {
+export const generateTransactionsPdf = (transactions, totalIngresos, totalGastos, saldoDisponible, mes, año) => {
     // Formatea tus datos de transacciones para la tabla del PDF
     const formattedTransactions = transactions.map(tx => [
         tx.date,
@@ -13,16 +14,18 @@ export const generateTransactionsPdf = (transactions, totalIngresos, totalGastos
 
     // Define la estructura del documento PDF
     const docDefinition = {
- pageMargins:[40,200,40,60], 
-header: {
-       'hola'    
+        pageMargins: [40, 120, 40, 60],
+        header: {
 
-},
+            columns: [
+                { text: 'Reporte de Transacciones', margin: [40, 30, 0, 20], fontSize: 20 },
+                {image: imageReportHeader, width: 120, height: 120, alignment: 'right'}
+            ],
+        },
+        footer: footerSecction,
         content: [
-
+        {text: `Periodo: ${mes}/${año}`, fontSize: 16, margin: [0, 0, 0, 20]},
             {
-                margin: [0, 0, 20, 0],
-
                 table: {
                     widths: ['auto', 'auto'],
                     body: [
@@ -76,12 +79,6 @@ header: {
             },
 
         ],
-        footer: {
-            text: 'Reporte Financiero',
-            alignment: 'center',
-            fontSize: 12,
-            margin: [0, 0, 0, 0]
-        },
 
         defaultStyle: {
             font: 'Roboto'  // Changed from 'Helvetica' to 'Roboto' which is included in pdfmake by default
