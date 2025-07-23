@@ -16,11 +16,11 @@ export const generateTransactionsPdf = (transactions, totalIngresos, totalGastos
  pageMargins:[40,200,40,60], 
 header:{
    hola mumdo
-}
+},
         content: [
 
             {
-                margin: [0, 100, 20, 0],
+                margin: [0, 0, 20, 0],
 
                 table: {
                     widths: ['auto', 'auto'],
